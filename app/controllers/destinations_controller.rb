@@ -3,7 +3,7 @@ class DestinationsController < ApplicationController
 	before_filter :all_destinations
 
 	def index
-		@preferred = Destination.find(:all, :conditions => ["preferred = TRUE"],:limit => 2,:order => "updated_at DESC")
+		@preferred = Destination.find(:all, :conditions => ["preferred = TRUE"],:limit => 3,:order => "updated_at DESC")
 		@preferred_one = @preferred.first
 		@preferred_two = @preferred.second
 		@preferred_three = @preferred.third
