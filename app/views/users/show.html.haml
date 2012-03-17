@@ -42,19 +42,19 @@
 			%h5="about #{@user.username}"
 		- if @user.facebook.present?
 			.one.columns
-				= link_to image_tag("social_media_icons/facebook_32.png"), "http://facebook.com/#{@user.facebook}" :target => "_blank"
+				= link_to image_tag("social_media_icons/facebook_32.png"), "http://facebook.com/#{@user.facebook}", :target => "_blank"
 		- if @user.twitter.present?
 			.one.columns
-				= link_to image_tag("social_media_icons/twitter_32.png"), "http://twitter.com/#{@user.twitter}" :target => "_blank"
+				= link_to image_tag("social_media_icons/twitter_32.png"), "http://twitter.com/#{@user.twitter}", :target => "_blank"
 		- if @user.blog.present?
 			.one.columns
-				= link_to image_tag("social_media_icons/rss_32.png"), "http://#{@user.blog.gsub "http://", ""}" :target => "_blank"
+				= link_to image_tag("social_media_icons/rss_32.png"), "http://#{@user.blog.gsub "http://", ""}", :target => "_blank"
 		- if @user.flickr.present?
 			.one.columns
-				= link_to image_tag("social_media_icons/flickr_32.png"), "http://flickr.com/#{@user.flickr}" :target => "_blank"
+				= link_to image_tag("social_media_icons/flickr_32.png"), "http://flickr.com/#{@user.flickr}", :target => "_blank"
 		- if @user.linkedin.present?
 			.one.columns
-				= link_to image_tag("social_media_icons/linkedin_32.png"), "http://linkedin.com/pub/#{@user.linkedin}" :target => "_blank"
+				= link_to image_tag("social_media_icons/linkedin_32.png"), "http://linkedin.com/pub/#{@user.linkedin}", :target => "_blank"
 		.one.columns
 		.three.columns
 			=render :partial => "stats"
