@@ -1,0 +1,54 @@
+.container
+    .row
+        .twelve.columns
+            =render :partial => "layouts/user_info_band"
+            
+
+.container
+    .row
+        .twelve.columns
+            =render :partial => "dashboard_tabs"
+
+.container
+    .row
+        = semantic_form_for(@user, :url => dashboard_edit_profile_path, :html => { :method => :put, :multipart => true }) do |form|
+            = form.inputs do
+                .row
+                    .twelve.columns
+                        = form.input :username, :label => "Username"
+                        .stringish
+                            = form.input :studyAbroadStatus, :as => :select, :label => "Study Abroad Status", :collection => ["I am a study abroader", "I want to be a study abroader"]
+                        = form.input :whyIStudyAbroad, :label => "Why I study Abroad", :input_html => {:rows => 10, :cols => 20, :maxlength => 120  }
+                        .row
+                            .four.columns
+                            .eight.columns
+                                .row
+                                    - if current_user.avatar.url.present?
+                                        .two.columns                    
+                                            = image_tag(current_user.avatar.thumb_small.url, :class => "profile_photo")
+                                        .three.columns
+                                            = form.input :remove_avatar, :as => :boolean
+                        .stringish
+                            = form.input :avatar
+                        = form.input :age, :label => "Age" 
+                        = form.input :languages, :label => "Language"
+                        .stringish
+                            = form.input :studyAbroadDates, :input_html => {:class => "customdatetime"}, :label => "Study Abroad Dates",  :start_year => 1960, :use_month_numbers => true
+                        = form.input :studyAbroadProgram, :label => "Study Abroad Program"
+                        = form.input :school, :label => "School"
+                        .stringish
+                            = form.input :studyAbroadCountry, :as => :country, :include_blank => true, :label => "Study Abroad Country"
+                        = form.input :hometown, :label => "Home Town"
+                        = form.input :favoriteCity, :label => "Favorite City"
+                        = form.input :nextDestination, :label => "Next Destination" 
+                        = form.input :facebook, :label => "Facebook Username"
+                        = form.input :twitter, :label => "Twitter Handle"
+                        = form.input :blog, :label => "Blog URL"
+                        = form.input :flickr, :label => "Flickr Username"
+                        = form.input :linkedin, :label => "LinkedIn Username"
+            = form.buttons do
+                .row
+                    .two.columns
+                        = form.commit_button :button_html => {:class => "primary green"}, :label => "Update"
+                    .two.columns
+                        =link_to "Cancel", dashboard_about_me_path, :class => "medium radius nice red button"

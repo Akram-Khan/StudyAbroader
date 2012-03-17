@@ -1,0 +1,11 @@
+<div class= "container">
+	<div class="row">
+	<h2> Forums</h2>
+	<%if @forums.empty?%>
+		<h3> Sorry No Forums exist yet contact the admin to create a new forum</h3>	
+	<%else%>
+	<%=render "listing"%>
+
+	<%end%>
+	</div>
+</div>

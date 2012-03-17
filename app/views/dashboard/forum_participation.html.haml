@@ -1,0 +1,52 @@
+.container
+	.row
+		.twelve.columns
+			=render :partial => "layouts/user_info_band"
+
+.container
+	.row
+		.twelve.columns
+			=render "dashboard_tabs"
+
+.container
+	.row
+		.eight.columns.forum_activity
+			%h5 Questions
+			-if @questions.empty?
+				%h6 You have not asked any questions in forum
+			-@questions.each do |question|
+				%ul{ :class => cycle("light", "dark") }
+					%strong
+						%li=link_to(question.name, forum_topic_path(question.forum_id,question))
+					%li="#{time_ago_in_words(question.created_at).capitalize} ago"
+			
+.container
+	.row
+		.eight.columns.forum_activity
+			%h5 Answers
+			-if @answers.empty?
+				%h6 You have not answered any questions in forum
+			-@answers.each do |answer|
+				%ul{ :class => cycle("light", "dark") }
+					%strong
+						%li=answer.content
+						%li
+							= "In response to"
+							=link_to(answer.topic.name, forum_topic_path(answer.topic.forum_id,answer.topic))
+					%li="#{time_ago_in_words(answer.created_at).capitalize} ago" 
+			
+.container	
+	.row
+		.eight.columns.forum_activity
+			%h5 Comments
+			-if @postcomments.empty?
+				%h6 You have not commented on any post
+			-@postcomments.each do |postcomment|
+				%ul{ :class => cycle("light", "dark") }
+					%strong
+						%li=postcomment.comment
+						%li
+							= "on post"
+							=link_to(postcomment.post.content, forum_topic_path(postcomment.post.topic.forum_id,postcomment.post.topic))
+					%li="#{time_ago_in_words(postcomment.created_at).capitalize}"
+			

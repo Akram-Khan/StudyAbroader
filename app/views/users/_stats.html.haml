@@ -1,0 +1,4 @@
+-@user ||= current_user
+=link_to "#{@user.following.count} Following", following_user_path(@user), :class => "small radius nice white button"
+=link_to "#{pluralize(@user.followers.count, "Follower")}", followers_user_path(@user), :class => "small radius nice white button"
+

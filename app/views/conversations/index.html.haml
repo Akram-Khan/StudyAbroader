@@ -1,0 +1,32 @@
+.container
+  .row
+    %h4 Messages
+    -if @conversations.empty?
+      %h5 Sorry you dont have any messages yet.
+    %ul
+      - @conversations.each do |conversation|
+        - unread_messages_count = conversation.unread_messages_count(current_user)
+        - if conversation.sender == current_user
+          %li
+            - if conversation.receiver.avatar.url.present?
+              = link_to image_tag(conversation.receiver.avatar.thumb_medium.url), user_path(conversation.receiver)
+            - else
+              = link_to image_tag("no-image.jpg"), user_path(conversation.receiver)
+          %li
+            = link_to "#{conversation.receiver.username}", conversation_path(conversation.id)
+            %strong
+              = unread_messages_count if unread_messages_count > 0
+          .clear
+          %hr
+        - else
+          %ul{ :class => cycle("light", "dark") }
+            %li
+              - if conversation.sender.avatar.url.present?
+                = link_to image_tag(conversation.sender.avatar.thumb_medium.url), user_path(conversation.sender)
+              - else
+                = link_to image_tag("no-image.jpg"), user_path(conversation.sender)
+            %li
+              = link_to "#{conversation.sender.username}", conversation_path(conversation.id)
+              %strong
+                = unread_messages_count if unread_messages_count > 0
+          .clear

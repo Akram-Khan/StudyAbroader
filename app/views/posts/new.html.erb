@@ -1,0 +1,12 @@
+<div class="contianer">
+	<div class="row">
+		<ul class = "breadcrumbs">
+			<li> <%=link_to "Forum's Home >", forums_path%></li>
+			<li> <%=link_to "Forum's Topics >", [@topic.forum]%> </li>
+			<li> <%=link_to "Topics >", [@topic.forum,@topic]%> </li>
+			<li> Current Page</li>
+		</ul>
+	</div>
+</div>
+
+<%=render "form"%>

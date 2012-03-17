@@ -1,0 +1,77 @@
+	 
+.container
+	.row.background-heading
+		%h5="Results from Topics"
+.container
+	.row
+		-if @topic_results.empty?
+			%h4="No Matching Result in Topic"
+			%hr	
+		.topic-background
+			-@topic_results.each do |result|
+				%ul
+					%li="Topic Name :-"
+					%strong
+						%li=link_to result.name, forum_topic_path(result.forum_id,result)
+					%li="Topic Description :-"
+					%li=result.description
+					%strong
+						%li="Created by :- #{result.user.username}"
+						%li
+							-if result.user.avatar?
+								=image_tag(result.user.avatar_url(:thumb_medium)).to_s
+							-else
+								=image_tag("no-image.jpg")
+					%hr
+		
+	.row.background-heading
+		%h5="Results from Posts"
+.container
+	.row
+		-if @post_results.empty?
+			%h4="No Matching Result in Post"
+			%hr
+		-@post_results.each do |result|
+			%ul
+				%li=result.content
+				%li=link_to "See the related topic", forum_topic_path(result.topic.forum_id,result.topic.id)
+				%hr
+
+.container
+	.row.background-heading
+		%h5="Results from User"
+
+.container
+	.row
+		-if @user_results.empty?
+			%h4="No Matching Result in User"
+			%hr
+		-@user_results.each do |result|
+			%ul
+				%li
+					%h5="Users matching #{result.username}"
+					-if result.avatar?
+						=image_tag(result.avatar_url(:thumb_medium)).to_s
+					-else
+						=image_tag("no-image.jpg")
+					=link_to result.username, [result]
+					%hr
+				
+				%li
+					%h5="Topics created by #{result.username}"
+					-result.topics.each do|topic|
+						%li="Topic Name :-"
+						%strong
+							%li=link_to topic.name, forum_topic_path(topic.forum_id,topic)
+						%li
+							%li="Topic Description :-"
+							%li=topic.description
+							%strong
+								="Created by :- #{topic.user.username}"
+						%hr
+				%li
+					%h5="Posts created by #{result.username}"
+					-result.posts.each do |post|
+						%li=post.content
+						%li=link_to "See the related topic", forum_topic_path(post.topic.forum_id,post.topic)
+						%hr

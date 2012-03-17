@@ -1,0 +1,23 @@
+.container
+	.row
+		.two.columns
+			=render "left_navigation"
+		
+		.ten.columns
+			=render "destinations_tabs"
+			.container
+				.row
+					.twelve.columns
+						-@blogs.each do |blog|
+							-if blog.city == @destination.city
+								%ul{ :class => cycle("light", "dark") }
+									%strong
+										%li=link_to blog.name.capitalize,[blog]
+									%li=raw truncate_html(blog.body, :length => 500)
+								%hr
+
+.container
+	.row
+		.two.columns
+		.ten.columns.apple_pagination
+			=will_paginate @blogs

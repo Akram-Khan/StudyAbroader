@@ -1,0 +1,10 @@
+.container
+	.row
+		.twelve.columns
+			%ul
+				%h2
+					%li=@program_provider.name
+				%strong
+					%li=raw(@program_provider.details)
+				%li=image_tag(@program_provider.programpics_url(:thumb_large)).to_s
+				%hr

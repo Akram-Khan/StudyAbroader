@@ -1,0 +1,22 @@
+<div class="contianer">
+	<div class="row">
+		<%=semantic_form_for [@forum,@topic] , :html => {:multipart => true} do |f|%>
+
+			<%=f.inputs do%>
+				<%=f.input :name, :label => "Topic Name", :input_html => { :size => 150}%>
+				<%=f.input :description, :label => "Describe the topic which you want to create", :input_html => {:cols => 150}%>
+				<%if @forum.category == "country"%>
+					<%if @country_name.present?%>
+						<%=f.input :country_name, :value => @country_name, :as => :hidden%>
+					<%else%>
+						<%=f.input :country_name, :as => :select, :collection => eval(@forum.continent), :prompt => "Select Country"%>
+					<%end%>
+				<%end%>
+			<%end%>
+
+			<%=f.buttons do%>
+				<%=f.commit_button :button_html => {:class => "primary"}%>
+			<%end%>
+		<%end%>
+	</div>
+</div>

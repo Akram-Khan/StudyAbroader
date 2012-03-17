@@ -1,0 +1,19 @@
+.three.columns
+	.row
+		.four.columns
+			%h3 Join
+		.four.columns.red-color
+			%h3 Today
+.nine.columns
+	= semantic_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true) do |f|
+		.row
+			.eleven.columns
+				.row
+				=f.inputs :class => "inline-fields-1"do
+					.six.columns
+						=f.input :email
+					.six.columns
+						=f.input :password 	
+			.one.columns
+				=f.buttons :class => "inline-fields-1"do
+					=f.commit_button :button_html => {:class => "primary nice right-side"},:label => "Join"

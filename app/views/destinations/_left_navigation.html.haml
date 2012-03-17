@@ -1,0 +1,13 @@
+.left_navigation
+  %ul(class = "continent_name")
+    - @destinations.group_by(&:continent).each do |continent, ds_per_continent|
+      %li
+        %u
+          %em=link_to "#{continent}".html_safe, "#"
+      %ul(class = "country_name")
+        - ds_per_continent.group_by(&:country).each do |country, ds_per_country|
+          %li=link_to "#{country}".html_safe, "#"
+          %ul(class = "city_name")
+            - ds_per_country.each do |destination|
+              %em
+                %li(class = "destination_#{destination}")=link_to destination.name, photos_destination_path(destination)

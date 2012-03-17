@@ -1,0 +1,7 @@
+.container
+	.row
+		.twelve.columns
+			%h3= @title
+			-unless @users.blank?
+				=render @users
+			%h3= "Sorry No #{@title}"

@@ -1,0 +1,67 @@
+.container	
+	.row
+		.twelve.columns
+			= render "home/slideshow"
+.container
+	.row
+		.four.columns.home-content-2.round
+			.row.home-content.round-border
+				.two.columns
+					
+				.ten.columns
+					%h4 Top Questions
+			
+			.row
+				.eleven.columns.home-content-1
+					%ul
+						-@top_questions.each do |question|
+							%strong
+								%li=question.name	
+				
+		.four.columns.home-content-2.round
+			.row.home-content.round-border
+				.two.columns
+					
+				.ten.columns
+					%h4 Top Destinations
+			.row
+				.eleven.columns.home-content-1
+					%ul
+						-@top_destinations.each do |destination|
+							%h5=link_to destination.name, destination_path(destination)
+							-destination.destination_photos.limit(1).each do |photo|
+								%li=image_tag(photo.picture.thumb_large.url)
+							%li=raw truncate_html(destination.fun_facts, :length => 300)		
+					
+		.four.columns.home-content-2.round.align_right
+			.row.home-content.round-border
+				.two.columns
+					
+				.ten.columns
+					%h4 Recent Activity
+			
+			.row
+				.eleven.columns.home-content-1
+					-@feeds.each do |feed|
+						.two.columns
+							- if feed.actor.avatar.url.present?
+								= image_tag(feed.actor.avatar.thumb_small.url)
+							- else
+								= image_tag("no-image.jpg")
+						.ten.columns
+							%ul
+								%li
+									%strong								
+										=link_to feed.actor.username, user_path(feed.actor)
+									=feed.verb
+									- if feed.target_type == "Topic" || feed.target_type == "Post"
+										%strong
+											=link_to feed.target.name,forum_topic_path(feed.target.forum_id,feed.target)
+									-else
+										%strong
+											= link_to feed.target.name, [feed.target]
+									=time_ago_in_words(feed.created_at) + " ago"
+.container
+	.row
+		.twelve.columns.join-now.round
+			= render :partial => "join_now"

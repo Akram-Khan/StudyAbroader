@@ -1,0 +1,21 @@
+.container
+	.row
+		.twelve.columns
+			-if current_user.blank?
+				%ul(class="nav-bar round")
+					%li=link_to "Home",root_url, :class => "active round-header"
+					%li=link_to "Study Abroad Destinations", destinations_path
+					%li=link_to "Study Abroad Forums", forums_path
+					%li=link_to "Study Abroad Scholarships & Contests", scholarships_and_contests_path
+			-else
+				%ul(class="nav-bar round")
+					%li=link_to "Home",user_home_user_path(current_user), :class => "active round-header"
+					%li=link_to "Dashboard",dashboard_path
+					%li=link_to "Forums", forums_path
+					%li=link_to "Blogs", blogs_path
+					%li=link_to "Study Abroad Destinations", destinations_path
+					- inbox_count = 0
+					-current_user.received_conversations.each do |conversation|
+						-inbox_count = conversation.unread_messages_count(current_user)
+					%li=link_to "Inbox(#{inbox_count})", conversations_path
+							

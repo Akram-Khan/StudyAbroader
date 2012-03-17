@@ -1,0 +1,9 @@
+Blog Abroad
+
+= semantic_form_for [:admin, @blog] do |f|
+	= f.inputs do
+		= f.input :name, :label => "Blog Title", :input_html => {:size => 120}
+		//= f.input :name,  :as => :rich_picker, :config => { :style => 'width: 400px' }
+		= f.input :body, :as => :rich, :config => { :width => "76%", :height => "400px"}
+		= f.input :city, :label => "City"
+	= f.buttons :commit

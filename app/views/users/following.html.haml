@@ -1,0 +1,15 @@
+.container
+	.row
+		.twelve.columns
+			%h3= @title
+			-if @user.following.blank?
+				%h4="You are not following anyone"
+			-@user.following.each do |following|
+				.follower-block
+					.follower-pic
+						-if following.avatar?
+							=image_tag(following.avatar_url(:thumb_small)).to_s
+						-else
+							=image_tag "no-image.jpg"
+					.follower-name
+						=link_to following.username, user_path(following)

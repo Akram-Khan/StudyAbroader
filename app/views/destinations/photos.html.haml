@@ -1,0 +1,24 @@
+.container
+	.row
+		.two.columns
+			=render "left_navigation"
+		
+		.ten.columns
+			=render "destinations_tabs"
+			.container
+				.row
+					.twelve.columns
+						-@photos.each do |photo|
+							%ul
+								.row
+									.nine.columns
+										%li=image_tag(photo.picture.thumb_large.url)
+									.three.columns.photo_description
+										%em=photo.description
+								%hr
+
+.container
+	.row
+		.two.columns
+		.ten.columns.apple_pagination
+			=will_paginate @photos

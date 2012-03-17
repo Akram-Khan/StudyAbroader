@@ -1,0 +1,29 @@
+!!!
+.container
+	.row
+		= render :partial => "devise/registrations/new"
+		= render :partial => "devise/sessions/new"
+
+	.row.above-header.round
+		.three.columns.header_image
+			= link_to logo, root_url
+		
+		.three.columns
+			-if current_user.blank?
+				=link_to "Sign Up",signup_path, :class=> "signupButtonForModal small radius nice green button"
+				=link_to "Login",signin_path, :class=> "signinButtonForModal small radius nice blue button"
+	
+		.three.columns
+			=form_tag "/search", :method =>"get" do
+				=text_field_tag :query,params[:query], :placeholder => "search", :class =>"search round"
+				=image_submit_tag("search.png")
+		
+		.four.columns.links-header
+			%ul(class="block-grid")	
+				%li=link_to "About |", about_path, :class => "nice foot"		
+				%li=link_to "Contact |", contact_path, :class => "nice foot"
+				%li=link_to "Blog |", blogs_path, :class => "nice foot"
+				%li=link_to "Program Providers", program_providers_path, :class => "nice foot"
+				- unless current_user.blank?
+					%li=link_to "| Logout", signout_path, :class => "nice foot"
+		

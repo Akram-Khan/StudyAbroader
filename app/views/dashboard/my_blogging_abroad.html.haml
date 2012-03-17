@@ -1,0 +1,49 @@
+.container
+	.row
+		.twelve.columns
+			=render :partial => "layouts/user_info_band"
+			
+
+.container
+	.row
+		.twelve.columns
+			=render :partial => "dashboard_tabs"
+.container
+
+.contianer
+	.row
+		.two.columns
+		.seven.columns
+			= link_to t(:post_a_new_study_abroad_blog), new_user_submission_path(current_user), :class => "large radius nice white button"
+
+- @submissions.each do |submission|
+	.container
+		.row
+			.nine.columns.submission_template
+				.heading_center
+				%h5=link_to "#{submission.title}", user_submission_path(submission.user, submission)
+				%hr
+					%p.body
+					= raw truncate_html(submission.body, :length => 300)
+					%hr
+					%h5= link_to "Read More", user_submission_path(submission.user, submission)
+			.three.columns
+				- if submission.editable_by?(current_user) && submission.published == 0
+					= link_to "&#9998".html_safe, edit_user_submission_path(current_user, submission) , :class => "small radius nice green button"
+					= link_to "&#x2716".html_safe, user_submission_path(current_user, submission), :method => :delete, :confirm => "Are you sure you want to delete this blog?", :class => "small radius nice red button"
+				%br
+				%em= "#{submission.created_at.strftime('%B %d, %Y')}"
+				%br
+				- if submission.published == 0
+					.blue.radius.label
+						Awaiting Approval
+				- if submission.published == 1
+					.green.radius.label
+						Published
+				- if submission.published == 2
+					.red.radius.label
+						Declined
+.container
+	.row
+		.nine.columns.apple_pagination             
+			= will_paginate @submissions

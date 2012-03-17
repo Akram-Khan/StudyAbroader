@@ -1,0 +1,30 @@
+.container
+  .row
+    %h4 Messages
+
+.container
+  .row
+    = semantic_form_for @message do |form|
+      = form.buttons do
+        .button_message= form.commit_button :label => "Send Message", :button_html => {:class => "small radius nice white button"}
+      = form.inputs do
+        .body_message= form.input :body, :label => false, :input_html => {:size => 68}
+        = form.input :receiver_id, :as => :hidden
+
+.container
+  .row
+    - @messages.each do |msg|
+      .two.columns.message-border
+        %ul
+          %li
+          - if msg.sender.avatar.url.present?
+            = link_to image_tag(msg.sender.avatar.thumb_medium.url), user_path(msg.sender)
+          - else
+            = link_to image_tag("no-image.jpg"), user_path(msg.sender)
+          %li
+            %strong.sender= link_to msg.sender.username, msg.sender
+            .ago #{time_ago_in_words(msg.created_at)} ago
+      .ten.columns.message-body
+        %h6= msg.body
+      .clear
+      %hr

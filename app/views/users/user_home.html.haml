@@ -1,0 +1,90 @@
+.container
+	.row
+		.three.columns.round
+			.row.home-content.round-border
+				.two.columns
+					
+				.ten.columns
+					%h5 Forum Updates
+			.row
+				.container
+					.twelve.columns.home-content-1
+						-@feeds.each do |feed|
+							%ul
+								%li
+									- unless feed.target_type == "Blog" || feed.target_type == "Submission"	
+										%strong								
+											=link_to feed.actor.username, user_path(feed.actor)
+										=feed.verb
+										%strong
+											=link_to feed.target.name,forum_topic_path(feed.target.forum_id,feed.target)
+										=time_ago_in_words(feed.created_at) + " ago"							
+
+		.three.columns.user-home.round
+			.row.home-content.round-border
+				.two.columns
+
+				.ten.columns
+					%h5="Country Updates  #{@user.studyAbroadCountry}"
+			.row
+				.container
+					.twelve.columns.home-content-1
+						-@feeds.each do |city|
+							-if current_user.studyAbroadCountry == city.actor.studyAbroadCountry
+								%ul
+									%li
+										%strong
+											=link_to city.actor.username,user_path(city.actor)
+										=city.verb
+										%strong
+											- if city.target_type == "Topic" || city.target_type == "Post"
+												=link_to city.target.name, forum_topic_path(city.target.forum_id,city.target)
+											- else
+												=link_to city.target.name,[city.target]
+										=time_ago_in_words(city.created_at) + " ago"
+
+		.three.columns.user-home.round
+			.row.home-content.round-border
+				.two.columns
+
+				.ten.columns
+					%h5 Recent Activity
+			.row
+				.container
+					.twelve.columns.home-content-1
+						-unless @activity_streams.blank?
+							-@activity_streams.each do |activity|
+								%ul
+								
+									%li
+										%strong
+											=link_to activity.actor.username, user_path(activity.actor)
+										=activity.verb
+										%strong
+											- if activity.target_type == "Topic" || activity.target_type == "Post"
+												=link_to activity.target.name,forum_topic_path(activity.target.forum_id,activity.target)
+											-else
+												=link_to activity.target.name, [activity.target]
+										=time_ago_in_words(activity.created_at) + " ago"
+
+		.three.columns.user-home.round
+			.row.home-content.round-border
+				.two.columns
+
+				.ten.columns
+					%h5 My Experience
+			.row
+				.container
+					.twelve.columns.home-content-1
+						-@points_feeds.each do |feed|
+							%ul
+								%li
+									%strong
+										=feed.actor.username
+									=feed.verb
+									%strong
+										- if feed.target_type == "Topic" || feed.target_type == "Post"
+											=link_to feed.target.name, forum_topic_path(feed.target.forum_id,feed.target)	
+										- else
+											=link_to feed.target.name, [feed.target]
+									=time_ago_in_words(feed.created_at) + " ago"

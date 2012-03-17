@@ -1,0 +1,50 @@
+<div class = "container">
+
+	<div class = "row">
+		<ul class = "breadcrumbs">
+			<li> <%=link_to "Forum's Home >", forums_path%></li>
+			<li> Current Page</li>
+		</ul>
+		<h4> <%="Topics by #{@country_name}"%></h4>
+	</div>
+
+	<div class = "row box">
+		<%=render "topics/topic_header"%>
+		<%@forum.topics.each do |topic|%>
+			<%if topic.country_name == @country_name%>
+
+			<div class = "row box-3">
+			<div class = "six columns">
+				<%=link_to topic.name, [@forum,topic]%>
+			</div>
+
+
+			<div class = "two columns">
+				<%topic.posts.limit(1).each do |post|%>
+				<%=time_ago_in_words(post.created_at)%> ago
+				<%end%>
+			</div>
+
+			<div class = "one columns">
+			</div>
+
+			<div class = "two columns">
+				<%=topic.posts.count%>
+			</div>
+
+			<div class = "two columns">
+				
+			</div>
+		</div>
+			<%end%>
+		<%end%>
+	</div>
+
+<div class="container">
+	<div class="row">
+	<%=link_to "New Topic", new_forum_topic_path(@forum,:country => @country_name),:class => "small radius nice blue button"%>
+	</div>
+</div>
+
+
+</div>

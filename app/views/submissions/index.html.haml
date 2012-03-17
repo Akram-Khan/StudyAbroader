@@ -1,0 +1,11 @@
+.container
+	.row
+		= render :partial => "layouts/user_info_band"
+	.row
+		%hr
+	.row
+		.two.columns
+		.seven.columns
+			= link_to t(:post_a_new_study_abroad_blog), new_user_submission_path(current_user), :class => "large radius nice white button"
+.container
+	= render :partial => 'list'

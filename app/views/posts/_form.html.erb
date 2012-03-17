@@ -1,0 +1,15 @@
+<div class="contianer">
+	<div class="row">
+		<div class = "two columns">
+		<%=semantic_form_for [@topic,@post], :html => {:multipart => true} do |f|%>
+			<%=f.inputs do%>
+				<%=f.input :content, :label => "Write your reply here",:input_html => {:cols => 150}%>
+			<%end%>
+
+			<%=f.buttons do%>
+				<%=f.commit_button :button_html => {:class => "primary"}%>
+			<%end%>
+		<%end%>
+		</div>
+	</div>
+</div>

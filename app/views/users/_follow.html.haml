@@ -1,0 +1,5 @@
+=semantic_form_for current_user.relationships.build(:followed_id => @user.id) do |f|
+	= f.inputs do
+		=f.input :followed_id, :as => :hidden
+	= f.buttons do
+		=f.commit_button :button_html => {:class => "primary nice"}, :label => "Follow"

@@ -1,0 +1,25 @@
+<h5>Welcome <%= @resource.email %> To StudyAbroader</h5>
+
+<p>You can confirm your account through the link below:</p>
+
+<h4><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></h4>
+
+<h5>Tips on Getting Started on StudyAbroader</h5> 
+<p> In order for us to better understand you and customize StudyAbroader to your needs please consider completing your profile information at the link below:</p>
+
+<p><%= link_to "Edit Profile", "http://studyabroader.com/dashboard/edit_profile" %></p>
+
+<h5>Forums</h5>
+
+<p>You can browse the StudyAbroader forums and post your own queries at the link below:</p>
+
+<p><%= link_to "StudyAbroader Forum", "http://studyabroader.com/forums" %></p>
+
+<h5>Blogs</h5>
+
+<p>You can contribute to the StudyAbroader Blogs by sharing your study abroad experiences, at the link below:</p>
+
+<p><%= link_to "StudyAbroader Blog Submissions", "http://studyabroader.com/dashboard/my_blogging_abroad"%></p>
+
+</br>
+<p> Thank you for signing up and welcome aboard!</p>

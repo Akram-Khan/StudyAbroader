@@ -1,0 +1,20 @@
+%ul
+    - @submissions.each do |submission|
+        %li
+            .container
+                .row
+                    .nine.columns.submission_template
+                        .heading_center
+                            %h5=link_to "#{submission.title}", user_submission_path(submission.user, submission)
+                        %hr
+                        %p.body
+                            = raw truncate_html(submission.body, :length => 1500)
+                            %hr
+                            %h5= link_to "Read More", user_submission_path(submission.user, submission)
+                    .three.columns
+                        %br
+                        %em= "#{submission.created_at.strftime('%B %d, %Y')}"
+.container
+    .row
+        .nine.columns.apple_pagination             
+            = will_paginate @submissions

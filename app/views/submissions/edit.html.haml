@@ -1,0 +1,16 @@
+.container
+	.row
+		.twelve.columns
+			%h5 Edit blog
+.container
+	.row
+		.twelve.columns
+			= semantic_form_for(@submission, :url => user_submission_path(@user, @submission, {:ajax => true}), :html => {:multipart => true}) do |f|
+				= f.inputs do
+					= f.input :name, :label => "Blog Title", :input_html => { :size => 120}
+					= f.input :body, :input_html => { :class => "EditorBox" }
+		
+				=f.buttons do
+					=f.commit_button :button_html => {:class => "primary"}, :label => "Submit"
+ 
+			= link_to t(:cancel), user_submissions_path(@user)

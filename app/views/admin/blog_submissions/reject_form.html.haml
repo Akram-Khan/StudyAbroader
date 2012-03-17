@@ -1,0 +1,9 @@
+= semantic_form_for @admin_message = AdminMessaging.new do |form|
+	= form.inputs do
+		= form.input :title, :value => "Your blog submission has been rejected", :as => :hidden
+		= form.input :email, :value => @submission.user.email, :as => :hidden
+		= form.input :username, :value => @submission.user.username, :as => :hidden
+		= form.input :user_id, :value => @submission.user.id, :as => :hidden
+		= form.input :body, :label => "Message"
+	= form.buttons do
+		= form.commit_button :label => "Reject"

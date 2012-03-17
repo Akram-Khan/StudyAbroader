@@ -1,0 +1,24 @@
+.container
+	.row
+		.two.columns
+			=render "left_navigation"
+		
+		.ten.columns
+			=render "destinations_tabs"
+			.container
+				.row
+					.twelve.columns
+						-@videos.each do |video|
+							%ul
+								.row
+									.eight.columns.destination_vertical_border
+										=raw video.embed_video
+									.four.columns.photo_description
+										%em=video.description
+								%hr
+
+.container
+	.row
+		.two.columns
+		.ten.columns.apple_pagination
+			=will_paginate @videos

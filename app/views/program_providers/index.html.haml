@@ -1,0 +1,16 @@
+.container
+	.row
+		.twelve.columns
+			-@program_providers.each do|program|
+				%ul
+					%h2
+						%li=link_to program.name, program_provider_path(program)
+					%strong
+						%li=raw truncate_html(program.details, :length => 500)
+					%li=image_tag(program.programpics_url(:thumb_large)).to_s
+					%hr
+
+.container
+	.row
+		.twelve.columns
+			= will_paginate @program_providers

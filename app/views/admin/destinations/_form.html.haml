@@ -1,0 +1,14 @@
+New Destination
+
+= semantic_form_for [:admin, @destination] do |f|
+	= f.inputs do
+		= f.input :continent, :label => "Continent", :as => :select, :collection => ["asia", "africa", "europe", "north_america", "south_america", "australia", "antarctica"], :input_html => {:id => "first"}
+		= f.input :country, :label => "Country", :as => :select, :input_html => {:id => "second"}
+		= f.input :city, :label => "City"
+		= f.input :fun_facts,:as => :rich, :config => { :width => "76%", :height => "400px"},:label => "Fun Facts"
+		=f.input :preferred, :label => "Preferred Destination"
+
+	= f.inputs :for => :destination_photos do |j|
+		=j.input :picture
+
+	= f.buttons :commit

@@ -1,0 +1,75 @@
+.container
+	.row
+		.ten.columns.blog_template
+			.heading_center
+				%h4= @blog.title
+			%hr
+			=raw @blog.body
+		.two.columns
+			- if @blog.user_id.nil?
+				= image_tag("no-image.jpg")
+				%br
+				%b Admin
+			- elsif User.exists?(@blog.user_id)
+				- @user = User.find(@blog.user_id)
+				- if @user.avatar.url.present?
+					= image_tag(@user.avatar.thumb_small.url)
+				- else
+					= image_tag("no-image.jpg")
+				%br
+				%b= link_to "#{@user.username}", user_path(@user)  
+			- else 
+				= image_tag("no-image.jpg")
+				%br
+				%b Admin
+			%br
+			%em= "#{@blog.created_at.strftime('%B %d, %Y')}"
+			%br
+			%em= "#{pluralize(@blog.blogcomments.count, "Comment")}"
+
+
+.container
+	.row
+		.nine.columns
+			%hr
+				%h4 Comment on this blog post
+				= semantic_form_for [@blog,@new_comment]  do |form|
+					= form.inputs do
+						= form.input :blog_id, :as => :hidden, :value => @blog.id
+						= form.input :comment, :label => false, :input_html => {:cols => 125}
+					= form.buttons do
+						= form.commit_button :button_html => {:class => "primary"}, :wrapper_html => { :style => "float:right;" }, :label => "Comment"
+.container
+	.row
+		%h4= "#{pluralize(@blog.blogcomments.count, "Comment")}"
+		.row
+			.nine.columns
+				%hr
+		- @comments.each do |comment|
+			.nine.columns
+				- if current_user.avatar.url.present?
+					= image_tag(comment.user.avatar.thumb_small.url)
+				- else
+					= image_tag("no-image.jpg")
+				= link_to comment.user.username, user_path(comment.user)
+				%span #{time_ago_in_words(comment.created_at)} ago
+				= link_to("delete", [@blog,comment], :method => :delete, :confirm => "Are you sure?") if comment.user == current_user
+			.row
+				.nine.columns
+					%p= simple_format(comment.comment)
+			.row
+				.five.columns
+					%hr
+.container
+	.row
+		.three.columns
+		.nine.columns
+			= render :partial => "layouts/google_adsense"
+						
+
+
+
+//- if @poll  
+//    = render :partial => "profile/show_poll"
+//- if @slideshows
+//    = render :partial => "profile/show_slides", :locals => {:slideshow => @slideshows}

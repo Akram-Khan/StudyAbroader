@@ -1,0 +1,13 @@
+// Active Admin CSS Styles
+@import "active_admin/mixins";
+@import "active_admin/base";
+
+// To customize the Active Admin interfaces, add your
+// styles here:
+#wrapper .cke_skin_kama {
+	margin-left: 20%;
+}
+
+#header {
+	padding: 20px 30px;
+}

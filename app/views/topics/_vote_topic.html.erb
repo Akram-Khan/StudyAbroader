@@ -1,0 +1,29 @@
+<%if !@topic.owner?(current_user)%>
+	<div class = "row">
+		<div class = "twelve columns">
+		<%if current_user.voted_for?(@topic) || current_user.voted_against?(@topic)%>
+			<%=image_tag "upvote_grey.png"%>
+		<%else%>
+	 		<%=link_to upvote, vote_up_forum_topic_path(@forum,@topic), :method => :post%>
+	 	<%end%>
+	 	</div>
+	 </div>
+
+	 <div class = "row">
+	 	<div class="one columns">
+	 	</div>
+		<div class = "ten columns">
+	 		<h5><%=@topic.plusminus%> </h5>
+		</div>
+	 </div>
+
+	 <div class = "row">
+		<div class = "twelve columns">
+		<%if current_user.voted_against?(@topic) || current_user.voted_for?(@topic)%>
+			<%=image_tag "downvote_grey.png"%>
+		<%else%>
+			<%=link_to downvote, vote_down_forum_topic_path(@forum,@topic), :method => :post%>
+		<%end%>
+		</div>
+	 </div>
+<%end%>

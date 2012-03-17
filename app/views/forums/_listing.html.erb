@@ -1,0 +1,135 @@
+<div class = "container">
+<%=render "forum_header"%>
+<%@forums.each do |forum|%>
+		<%if forum.category == "country"%>
+		
+		<div class = "row box">
+		
+			<div class = "four columns">
+				<h6> <%=link_to forum.title.capitalize, [forum]%></h6>
+				<h6><%=simple_format(forum.description)%></h6>
+			</div>
+
+			<div class = "five columns">
+				
+				<%=form_tag(list_topics_by_country_forum_path(forum), :method => "get", :remote => true) do%>
+				
+				<%=select_tag(:main, options_for_select(eval(forum.continent)), :prompt => "Select Country", :onchange => 'this.form.submit();')%>
+				
+				<%end%>
+			</div>
+
+			<div class = "three columns">
+				<h6><%=forum.topics.count%></h6>
+			</div>
+
+			<div class = "one columns">
+				<h6><%=forum.posts.count%></h6>
+			</div>
+				
+		</div>
+		<%end%>
+<%end%>
+</div>
+
+<div class = "container">
+<%=render "before_you_go_header"%>
+<%@forums.each do |forum|%>
+		<%if forum.category == "Before you go"%>
+		<div class = "row box">
+		
+			<div class = "six columns">
+				<h6> <%=link_to forum.title.capitalize, [forum]%></h6>
+				<h6><%=simple_format(forum.description)%></h6>
+			</div>
+
+			<div class = "one columns">
+			</div>
+
+			<div class = "two columns">
+				<h6><%=forum.topics.count%></h6>
+			</div>
+
+			<div class = "two columns">
+				<h6><%=forum.posts.count%></h6>
+			</div>
+
+			<div class = "two columns">
+			
+			</div>
+				
+		</div>
+		<%end%>
+<%end%>
+</div>
+
+
+<div class = "container">
+<%=render "general_header"%>
+<%@forums.each do |forum|%>
+		<%if forum.category == "General"%>
+		<div class = "row box">
+		
+			<div class = "six columns">
+				<h6> <%=link_to forum.title.capitalize, [forum]%></h6>
+				<h6><%=simple_format(forum.description)%></h6>
+			</div>
+
+			<div class = "one columns">
+			</div>
+
+			<div class = "two columns">
+				<h6><%=forum.topics.count%></h6>
+			</div>
+
+			<div class = "two columns">
+				<h6><%=forum.posts.count%></h6>
+			</div>
+
+			<div class = "two columns">
+			
+			</div>
+				
+		</div>
+		<%end%>
+<%end%>
+</div>
+
+<div class = "container">
+<%=render "after_study_abroad_header"%>
+<%@forums.each do |forum|%>
+		<%if forum.category == "After Study Abroad"%>
+		<div class = "row box">
+		
+			<div class = "six columns">
+				<h6> <%=link_to forum.title.capitalize, [forum]%></h6>
+				<h6><%=simple_format(forum.description)%></h6>
+			</div>
+
+			<div class = "one columns">
+			</div>
+
+			<div class = "two columns">
+				<h6><%=forum.topics.count%></h6>
+			</div>
+
+			<div class = "two columns">
+				<h6><%=forum.posts.count%></h6>
+			</div>
+
+			<div class = "two columns">
+			
+			</div>
+				
+		</div>
+		<%end%>
+<%end%>
+</div>
+
+<div class = "container">
+    <div class = "row">
+        <div class ="ten columns apple_pagination">            
+            <%= will_paginate @forums%>
+          </div>
+    </div>
+</div>

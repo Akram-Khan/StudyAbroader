@@ -1,0 +1,15 @@
+.container
+	.row
+		.twelve.columns
+			%h3= @title
+			-if @user.followers.blank?
+				%h4="You do not have any followers"
+			-@user.followers.each do |follower|
+				.follower-block
+					.follower-pic
+						-if follower.avatar?
+							=image_tag(follower.avatar_url(:thumb_small)).to_s
+						-else
+							=image_tag "no-image.jpg"
+					.follower-name
+						=link_to follower.username, user_path(follower)

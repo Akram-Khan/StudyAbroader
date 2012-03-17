@@ -1,0 +1,23 @@
+.container
+	.row
+		.two.columns
+			=render "left_navigation"
+		
+		.ten.columns
+			=render "destinations_tabs"
+			.container
+				.row
+					.twelve.columns
+						-@topics.each do |topic|
+							-if topic.city == @destination.city
+								%ul{ :class => cycle("light", "dark") }
+									%strong
+										%li=link_to topic.name.capitalize,forum_topic_path(topic.forum_id,topic)
+									%li=topic.description
+								%hr
+
+.container
+	.row
+		.two.columns
+		.ten.columns.apple_pagination
+			=will_paginate @topics

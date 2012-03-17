@@ -1,0 +1,118 @@
+.container
+	.row
+		.twelve.columns
+			=render :partial => "layouts/user_info_band"
+.container
+	.row
+		.twelve.columns
+			=render :partial => "dashboard_tabs"
+.container
+	.row
+		.two.columns
+			%h5 About Me
+		- if @user.facebook.present?
+			.one.columns
+				= link_to image_tag("social_media_icons/facebook_32.png"), "http://facebook.com/#{@user.facebook}", :target => "_blank"
+		- if @user.twitter.present?
+			.one.columns
+				= link_to image_tag("social_media_icons/twitter_32.png"), "http://twitter.com/#{@user.twitter}", :target => "_blank"
+		- if @user.blog.present?
+			.one.columns
+				= link_to image_tag("social_media_icons/rss_32.png"), "http://#{@user.blog.gsub "http://", ""}", :target => "_blank"
+		- if @user.flickr.present?
+			.one.columns
+				= link_to image_tag("social_media_icons/flickr_32.png"), "http://flickr.com/#{@user.flickr}", :target => "_blank"
+		- if @user.linkedin.present?
+			.one.columns
+				= link_to image_tag("social_media_icons/linkedin_32.png"), "http://linkedin.com/pub/#{@user.linkedin}", :target => "_blank"		
+	.row
+		.four.columns
+			%hr
+	- if @user.username.present?
+		.row
+			.three.columns
+				%em Username
+			.four.columns
+				= @user.username
+				%hr
+	- if @user.studyAbroadStatus.present?
+		.row
+			.three.columns
+				%em Study Abroad Status
+			.four.columns
+				= @user.studyAbroadStatus
+				%hr
+	- if @user.whyIStudyAbroad.present?
+		.row
+			.three.columns
+				%em Why I study abroad
+			.four.columns
+				= @user.whyIStudyAbroad
+				%hr
+	- if @user.age.present?
+		.row
+			.three.columns
+				%em Age
+			.four.columns
+				= @user.age
+				%hr
+	- if @user.languages.present?
+		.row
+			.three.columns
+				%em Languages
+			.four.columns
+				= @user.languages
+				%hr
+	- if @user.studyAbroadDates.present?
+		.row
+			.three.columns
+				%em Study Abroad Dates
+			.four.columns
+				= @user.studyAbroadDates
+				%hr
+	- if @user.studyAbroadProgram.present?
+		.row
+			.three.columns
+				%em Study Abroad Program
+			.four.columns
+				= @user.studyAbroadProgram
+				%hr
+	- if @user.school.present?
+		.row
+			.three.columns
+				%em School
+			.four.columns
+				= @user.school
+				%hr
+	- if @user.studyAbroadCountry.present?
+		.row
+			.three.columns
+				%em Study Abroad Country
+			.four.columns
+				= @user.studyAbroadCountry
+				%hr
+	- if @user.hometown.present?
+		.row
+			.three.columns
+				%em Hometown
+			.four.columns
+				= @user.hometown
+				%hr
+	- if @user.favoriteCity.present?
+		.row
+			.three.columns
+				%em Favorite City
+			.four.columns
+				= @user.favoriteCity
+				%hr
+	- if @user.nextDestination.present?
+		.row
+			.three.columns
+				%em Next Destination
+			.four.columns
+				= @user.nextDestination
+				%hr
+	.row
+		.three.columns
+		.two.columns
+			=link_to "Edit Profile", dashboard_edit_profile_path, :class => "small radius nice green button"

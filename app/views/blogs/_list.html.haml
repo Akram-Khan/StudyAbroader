@@ -1,0 +1,38 @@
+%ul
+    - @blogs.each do |blog|
+        %li
+            .container
+                .row
+                    .ten.columns.blog_template
+                        .heading_center
+                            %h5=link_to "#{blog.title}", blog_path(blog)
+                        %hr
+                        %p.body
+                            = raw truncate_html(blog.body, :length => 1500)
+                            %hr
+                            %h5= link_to "Read More", blog_path(blog)                  
+                    .two.columns
+                        - if blog.user_id.nil?
+                            = image_tag("no-image.jpg")
+                            %br
+                            %b Admin
+                        - elsif User.exists?(blog.user_id)
+                            - @user = User.find(blog.user_id)
+                            - if @user.avatar.url.present?
+                                = image_tag(@user.avatar.thumb_small.url)
+                            - else
+                                = image_tag("no-image.jpg")
+                            %br
+                            %b= link_to "#{@user.username}", user_path(@user)  
+                        - else 
+                            = image_tag("no-image.jpg")
+                            %br
+                            %b Admin
+                        %br 
+                        %em= "#{blog.created_at.strftime('%B %d, %Y')}"
+                        %br
+                        %em= "#{pluralize(blog.blogcomments.count, "Comment")}"
+.container
+    .row
+        .ten.columns.apple_pagination             
+            = will_paginate @blogs

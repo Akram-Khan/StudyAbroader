@@ -1,0 +1,22 @@
+.container
+	.row
+		.twelve.columns
+			%ul(class = "breadcrumbs")
+				%li=link_to "Dashboard >", dashboard_path
+				%li="Current Page"
+			%h5 Blog Abroad
+.container
+	.row
+		.twelve.columns
+			= semantic_form_for(@submission, :url => user_submissions_path(@user), :html => {:multipart => true}) do |f|
+				.row
+					.twelve.columns
+						= f.inputs do
+							= f.input :name, :label => "Blog Title", :input_html => {:size => 120}
+							= f.input :body, :input_html => { :class => "EditorBox" }
+				.row
+					.two.columns
+						=f.buttons do
+							=f.commit_button :button_html => {:class => "primary"}, :label => "Create Blog"
+					.two.columns
+						= link_to t(:cancel), user_submissions_path(@user), :class => "medium radius nice red button"

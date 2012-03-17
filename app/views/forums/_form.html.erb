@@ -1,0 +1,15 @@
+<div class="contianer">
+	<div class="row">
+		<%=semantic_form_for @forum, :html => {:multipart => true} do |f|%>
+			<%=f.inputs do%>
+				<%=f.input :category, :as => :select, :collection => ["Before you go", "After Study Abroad", "General"]%>
+				<%=f.input :title, :label => "Forum Title", :input_html => { :size => 160}%>
+				<%=f.input :description, :label => "Forum Description", :input_html => {:rows => 10, :cols => 200}%>
+			<%end%>
+			<%=f.buttons do%>
+				<%=f.commit_button :button_html => {:class => "primary"}%>
+			<%end%>
+		<%end%>
+	</div>
+</div>
+

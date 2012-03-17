@@ -1,0 +1,237 @@
+<div class = "container">
+	<div class="row">
+		<ul class = "breadcrumbs">
+			<li> <%=link_to "Forum's Home >", forums_path%></li>
+			<li> <%=link_to "Forum's Topics >", [@forum]%> </li>
+			<li> <%= @topic.name%></li>
+		</ul>
+		
+		<h3> <%=@topic.name%></h3>
+		<br> Created By <%=link_to @topic.user.username, user_path(@topic.user)%></br>
+	</div>
+</div>
+
+<div class= "container">
+<div class="row">
+	
+	<div class = "two columns">
+		<ul>
+			<li><%=link_to "Reply", new_topic_post_path(@topic), :class=> "small radius nice blue button"%></li>
+			<%if @topic.owner?(current_user)%>
+				<li><%=link_to "Edit Topic", [:edit,@forum,@topic], :class=> "small radius nice blue button"%> </li>
+				<li><%=link_to "Delete Topic", [@forum,@topic], :class=> "small radius nice red button", :method => :delete, :confirm => "Are you sure?"%></li>
+				
+			<%end%>
+				<%=render :partial => "vote_topic"%>
+		</ul>
+	</div>
+
+
+	<div class = "eight columns">
+		<div class="speech-question topic-color">
+			<%=simple_format(@topic.description)%>
+		</div>
+	</div>
+
+	<div class = "two columns">
+		<ul>
+			<li>
+				<%if @topic.user.avatar?%>
+					<%=image_tag(@topic.user.avatar_url(:thumb_medium)).to_s%>
+				<%else%>
+					<%=image_tag "no-image.jpg"%>
+				<%end%>
+			</li>
+			
+			<li> <strong> <%="Points :- #{@topic.user.points}"%> </strong> </li>
+			<li> <%= time_ago_in_words(@topic.created_at)%> </li>
+		</ul>
+	</div>
+
+	<div class = "one columns">
+	<%if @topic.user == current_user%>
+		<div class = "row">
+			<div class = "twelve columns">
+				<%=image_tag "upvote_grey.png"%>
+		 	</div>
+		</div>
+
+		 <div class = "row">
+		 	<div class="one columns">
+		 	</div>
+			<div class = "ten columns">
+		 		<h5><%=@topic.plusminus%> </h5>
+			</div>
+		 </div>
+
+		 <div class = "row">
+			<div class = "twelve columns">
+			
+				<%=image_tag "downvote_grey.png"%>
+			
+			</div>
+		 </div>
+	<%end%>
+	</div>
+<hr>
+</div>
+</div>
+
+
+<div class = "contianer">
+	<div class = "row">
+
+<%@topic_posts.each do |post|%>
+
+		<div class = "two columns">
+			<ul>
+				<li>
+				<%if post.user.avatar?%>
+				<%=image_tag(post.user.avatar_url(:thumb_medium)).to_s%>
+				<%else%>
+				<%=image_tag "no-image.jpg"%>
+				<%end%>
+				</li>
+				<li><%=link_to post.user.username, user_path(post.user)%> </li>
+				<li><strong> <%="Points :- #{post.user.points}"%> </strong> </li>
+				<li><%= time_ago_in_words(post.created_at) -%></li>
+			</ul>
+		</div>
+
+		<div class = "one columns">
+			<%if post.user == current_user%>
+				<div class = "row">
+					<div class = "twelve columns">
+						<%=image_tag "upvote_grey.png"%>
+				 	</div>
+				</div>
+
+				 <div class = "row">
+				 	<div class="one columns">
+				 	</div>
+					<div class = "ten columns">
+				 		<h5><%=post.plusminus%> </h5>
+					</div>
+				 </div>
+
+				 <div class = "row">
+					<div class = "twelve columns">
+						<%=image_tag "downvote_grey.png"%>
+					</div>
+				 </div>
+			<%end%>
+		</div>
+
+	
+	<div class = "eight columns">
+		<ul>
+			<li>
+			<div class="speech">
+				<%=simple_format(post.content)%>
+			</div>
+			</li>
+		</ul>
+
+		<div class = "row">
+			<div class="eight columns post-comment">
+				<%post.postcomments.limit(5).each do |postcomment|%>
+					<div class= "row">
+						<div class = "eight columns">
+							<%=postcomment.comment%>
+						</div>
+
+						<div class = "three columns">
+							<%=postcomment.user.username%>
+						</div>
+
+						<div class = "one columns">
+							<%=link_to "Delete", post_postcomment_path(post,postcomment), :method => :delete,:confirm => "Are you sure?"%> 
+						</div>
+					</div>
+					
+				<hr>
+				<%end%>
+			</div>
+		</div>
+
+		<%=semantic_form_for [post,@new_comment] do |form|%>
+		<div class="row">
+			<div class = "eight columns">
+				<%=form.inputs do%>
+					<%=form.input :post_id, :as => :hidden,:value => post.id%>
+					<%=form.input :comment, :label => false, :input_html => {:size => 70}%>
+				<%end%>
+			</div>
+
+			<div class="four columns">
+				<%=form.buttons do%>
+					<%=form.commit_button :button_html => {:class => "primary"}, :label => "comment"%>
+				<%end%>
+			</div>
+		</div>	
+<%end%>
+			
+	</div>
+		
+
+		<div class = "two columns">
+			<ul>
+				<%if post.owner?(current_user)%>
+					<li><%=link_to "Edit Post", edit_topic_post_path(@topic,post), :class=> "small radius nice blue button"%></li>
+					<li><%=link_to "Delete Post", topic_post_path(@topic,post), :class=> "small radius nice red button", :method => :delete, :confirm => "Are you sure?"%></li>
+				<%end%>
+
+				<%if !post.owner?(current_user)%>
+				<div class = "row">
+					<div class = "twelve columns">
+					<%if current_user.voted_for?(post) || current_user.voted_against?(post)%>
+						<%=image_tag "upvote_grey.png"%>
+					<%else%>
+				 		<%=link_to upvote, vote_up_topic_post_path(@topic,post), :method => :post%>
+				 	<%end%>
+				 	</div>
+				 </div>
+
+				 <div class = "row">
+				 	<div class="one columns">
+				 	</div>
+					<div class = "ten columns">
+				 		<h5><%=post.plusminus%> </h5>
+					</div>
+				 </div>
+
+				 <div class = "row">
+					<div class = "twelve columns">
+					<%if current_user.voted_against?(post) || current_user.voted_for?(post)%>
+						<%=image_tag "downvote_grey.png"%>
+					<%else%>
+						<%=link_to downvote, vote_down_topic_post_path(@topic,post), :method => :post%>
+					<%end%>
+					</div>
+				 </div>
+				 <%end%>
+				
+			</ul>
+		</div>
+<hr>
+
+	<%end%>
+	</div>
+</div>
+
+<div class = "container">
+    <div class = "row">
+        <div class ="ten columns apple_pagination">            
+            <%= will_paginate @topic_posts%>
+          </div>
+    </div>
+</div>
+
+<div class = "container">
+    <div class = "row">
+		<div class ="three columns"></div>
+		<div class ="nine columns">
+			<%=render :partial => "layouts/google_adsense"%>
+		</div>
+	</div>
+</div>

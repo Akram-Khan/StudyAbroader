@@ -1,0 +1,149 @@
+.container
+	.row
+		.four.columns
+			%ul
+				%li
+					- if @user.avatar.url.present?
+						= image_tag(@user.avatar.thumb_medium.url)
+					- else
+						= image_tag("no-image.jpg")
+					-unless @user == current_user
+						%li
+							-if current_user.blocklists.find_by_blocked_user(@user.id) || @user.blocklists.find_by_blocked_user(current_user.id)
+								= "you are in #{@user.username}'s blocklist"
+							-else
+
+								= link_to image_tag("conversation_bubble.png"), new_conversation_path(:receiver_id => @user.id), :title => "Message" 
+								= link_to image_tag("block.png"), new_user_blocklist_path(@user)
+		.one.columns
+		.three.columns
+			%ul
+				%li
+					%h5=@user.username
+				%strong
+					%em="#{@user.points} points"
+				%li=@user.studyAbroadStatus
+				%li
+					- if @user.studyAbroadCountry.present?
+						My study abroad country is
+						%li 
+							%strong=@user.studyAbroadCountry
+							=image_tag('flags/' + @user.studyAbroadCountry.downcase + '.png')
+		- if @user.studyAbroadStatus.present?
+			.two.columns
+			.three.columns
+				%strong why I study abroad
+				%hr
+				=@user.whyIStudyAbroad
+		%hr
+.container
+	.row
+		.three.columns
+			%h5="about #{@user.username}"
+		- if @user.facebook.present?
+			.one.columns
+				= link_to image_tag("social_media_icons/facebook_32.png"), "http://facebook.com/#{@user.facebook}" :target => "_blank"
+		- if @user.twitter.present?
+			.one.columns
+				= link_to image_tag("social_media_icons/twitter_32.png"), "http://twitter.com/#{@user.twitter}" :target => "_blank"
+		- if @user.blog.present?
+			.one.columns
+				= link_to image_tag("social_media_icons/rss_32.png"), "http://#{@user.blog.gsub "http://", ""}" :target => "_blank"
+		- if @user.flickr.present?
+			.one.columns
+				= link_to image_tag("social_media_icons/flickr_32.png"), "http://flickr.com/#{@user.flickr}" :target => "_blank"
+		- if @user.linkedin.present?
+			.one.columns
+				= link_to image_tag("social_media_icons/linkedin_32.png"), "http://linkedin.com/pub/#{@user.linkedin}" :target => "_blank"
+		.one.columns
+		.three.columns
+			=render :partial => "stats"
+		.two.columns
+			=render :partial => "follow_form"		
+	.row
+		.ten.columns
+			%hr
+	- if @user.username.present?
+		.row
+			.three.columns
+				%em Username
+			.four.columns
+				= @user.username
+				%hr
+	- if @user.studyAbroadStatus.present?
+		.row
+			.three.columns
+				%em Study Abroad Status
+			.four.columns
+				= @user.studyAbroadStatus
+				%hr
+	- if @user.whyIStudyAbroad.present?
+		.row
+			.three.columns
+				%em Why I study abroad
+			.four.columns
+				= @user.whyIStudyAbroad
+				%hr
+	- if @user.age.present?
+		.row
+			.three.columns
+				%em Age
+			.four.columns
+				= @user.age
+				%hr
+	- if @user.languages.present?
+		.row
+			.three.columns
+				%em Languages
+			.four.columns
+				= @user.languages
+				%hr
+	- if @user.studyAbroadDates.present?
+		.row
+			.three.columns
+				%em Study Abroad Dates
+			.four.columns
+				= @user.studyAbroadDates
+				%hr
+	- if @user.studyAbroadProgram.present?
+		.row
+			.three.columns
+				%em Study Abroad Program
+			.four.columns
+				= @user.studyAbroadProgram
+				%hr
+	- if @user.school.present?
+		.row
+			.three.columns
+				%em School
+			.four.columns
+				= @user.school
+				%hr
+	- if @user.studyAbroadCountry.present?
+		.row
+			.three.columns
+				%em Study Abroad Country
+			.four.columns
+				= @user.studyAbroadCountry
+				%hr
+	- if @user.hometown.present?
+		.row
+			.three.columns
+				%em Hometown
+			.four.columns
+				= @user.hometown
+				%hr
+	- if @user.favoriteCity.present?
+		.row
+			.three.columns
+				%em Favorite City
+			.four.columns
+				= @user.favoriteCity
+				%hr
+	- if @user.nextDestination.present?
+		.row
+			.three.columns
+				%em Next Destination
+			.four.columns
+				= @user.nextDestination
+				%hr

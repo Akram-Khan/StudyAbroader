@@ -1,0 +1,11 @@
+.container
+	.row
+		.two.columns
+			=render "left_navigation"
+
+		.ten.columns
+			=render "destinations_tabs"
+			.container
+				.row
+					.twelve.columns.centered
+						= gmaps({"map_options" =>{ "auto_zoom" => false, "zoom" => 15}, "markers" => { "data" => @json } })
