@@ -6,7 +6,7 @@ class DestinationsController < ApplicationController
 		@preferred = Destination.find(:all, :conditions => ["preferred = TRUE"],:limit => 2,:order => "updated_at DESC")
 		@preferred_one = @preferred.first
 		@preferred_two = @preferred.second
-		@preferred_three = @preferred.last
+		@preferred_three = @preferred.third
 	end
 
 	def show
