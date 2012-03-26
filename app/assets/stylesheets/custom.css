@@ -164,13 +164,13 @@ html, body {
   
   height: 45px; 
 
- background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#A9D0F5), to(#0080FF));
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#A9D0F5), to(#0080FF));
    /* Safari 5.1+, Mobile Safari, Chrome 10+ */
-  background-image: -webkit-linear-gradient(top, #A9D0F5, #0080FF); 
+  background-image: -webkit-linear-gradient(top, #A9D0F5, #0080FF);
    /* Firefox 3.6+ */
   background-image: -moz-linear-gradient(top, #A9D0F5, #0080FF);
     /*IE 9*/
-  background-color: #A9D0F5;
+  background-color: #2E9AFE;
    /* IE 10+ */
   background-image: -ms-linear-gradient(top, #A9D0F5, #0080FF);
    /* Opera 11.10+ */
