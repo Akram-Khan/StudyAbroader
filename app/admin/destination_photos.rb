@@ -3,7 +3,9 @@ ActiveAdmin.register DestinationPhoto do
     index do
         column :picture
         column :destination
-        column :description
+        column :description, :sortable => false do |destination_photo|
+          raw truncate(destination_photo.description, :length => 200)
+        end
         column :created_at
         column :updated_at
         default_actions
