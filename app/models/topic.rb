@@ -23,6 +23,4 @@ class Topic < ActiveRecord::Base
       self.user == other_user
     end
 
-    
-
 end

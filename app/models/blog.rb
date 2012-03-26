@@ -29,4 +29,9 @@ class Blog < ActiveRecord::Base
     	title #.titleize
   end
 
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
+
+
 end
