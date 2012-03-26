@@ -10,4 +10,4 @@
           %ul(class = "city_name")
             - ds_per_country.each do |destination|
               %em
-                %li(class = "destination_#{destination}")=link_to destination.name, photos_destination_path(destination)
+                %li(class = "destination_#{destination}")=link_to destination.name, fun_facts_destination_path(destination)

@@ -46,7 +46,5 @@ class DestinationsController < ApplicationController
 
 	def all_destinations
 		@destinations = Destination.all
-		
-		#cookies['country_id'] = params[:country_id]
 	end
 end

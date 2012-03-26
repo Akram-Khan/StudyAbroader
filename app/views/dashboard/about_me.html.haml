@@ -68,7 +68,7 @@
 			.three.columns
 				%em Study Abroad Dates
 			.four.columns
-				= @user.studyAbroadDates
+				= @user.studyAbroadDates.strftime("%b %Y")
 				%hr
 	- if @user.studyAbroadProgram.present?
 		.row

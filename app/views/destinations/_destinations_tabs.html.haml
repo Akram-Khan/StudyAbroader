@@ -3,9 +3,9 @@
 .container
 	.row
 		%dl(class="tabs contained")
+			%dd=link_to "Fun Facts", fun_facts_destination_path(@destination)
 			%dd=link_to "Study Abroad Photos", photos_destination_path(@destination)
 			%dd=link_to "Study Abroad Videos", videos_destination_path(@destination)
 			%dd=link_to "Forum Feed ", topic_destination_path(@destination)
 			%dd=link_to "Blog Feed ", blog_destination_path(@destination)
-			%dd=link_to "Fun Facts", fun_facts_destination_path(@destination)
 			%dd=link_to "Map", destination_map_destination_path(@destination)

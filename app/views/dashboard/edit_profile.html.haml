@@ -33,7 +33,7 @@
                         = form.input :age, :label => "Age" 
                         = form.input :languages, :label => "Language"
                         .stringish
-                            = form.input :studyAbroadDates, :input_html => {:class => "customdatetime"}, :label => "Study Abroad Dates",  :start_year => 1960, :use_month_numbers => true
+                            = form.input :studyAbroadDates, :input_html => {:class => "customdatetime"}, :label => "Study Abroad Dates",  :start_year => 1960, :discard_day => true
                         = form.input :studyAbroadProgram, :label => "Study Abroad Program"
                         = form.input :school, :label => "School"
                         .stringish

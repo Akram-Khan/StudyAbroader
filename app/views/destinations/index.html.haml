@@ -27,19 +27,19 @@
 		-@preferred_one.destination_photos.limit(1).each do |photo|
 			%li
 				=photo.description
-				=link_to "Know More", photos_destination_path(@preferred_one)
+				=link_to "Know More", fun_facts_destination_path(@preferred_one)
 
 .orbit-caption#htmlCaption2
 	-unless @preferred_two.blank?
 		-@preferred_two.destination_photos.limit(1).each do |photo|
 			%li
 				=photo.description
-				=link_to "Know More", photos_destination_path(@preferred_two)
+				=link_to "Know More", fun_facts_destination_path(@preferred_two)
 
 .orbit-caption#htmlCaption3
 	-unless @preferred_three.blank?
 		-@preferred_three.destination_photos.limit(1).each do |photo|
 			%li
 				=photo.description
-				=link_to "Know More", photos_destination_path(@preferred_three)
+				=link_to "Know More", fun_facts_destination_path(@preferred_three)
 	

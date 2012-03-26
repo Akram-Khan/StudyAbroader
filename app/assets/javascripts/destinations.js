@@ -17,6 +17,8 @@ $(document).ready(function(){
          	bullets:true,
          	captions: true,
           timer: true,
+          animationSpeed: 1000,
+          advanceSpeed: 5000,
          	captionAnimation: 'fade',
          	captionAnimationSpeed: 800
          });

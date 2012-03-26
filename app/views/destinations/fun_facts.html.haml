@@ -5,10 +5,8 @@
 		
 		.ten.columns
 			=render "destinations_tabs"
-
-.container
-	.row
-		.three.columns
-		.six.columns
-			=@destination.fun_facts
-			%hr
+			.container
+				.row
+					.twelve.columns
+						=raw @destination.fun_facts
+						%hr
