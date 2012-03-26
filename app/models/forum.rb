@@ -7,4 +7,8 @@ class Forum < ActiveRecord::Base
 
 	validates :title, :presence => true
 	validates :description, :presence => true
+
+	def to_param
+    	"#{id}-#{title.parameterize}"
+  	end
 end

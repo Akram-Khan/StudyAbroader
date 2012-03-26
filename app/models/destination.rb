@@ -19,7 +19,10 @@ class Destination < ActiveRecord::Base
     def gmaps4rails_address
 		#describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
   		"#{self.city}, #{self.country}" 
-	  end
+	end
 
+    def to_param
+        "#{id}-#{name.parameterize}"
+    end
     #scope :latest, order("preferred updated_at DESC")
 end

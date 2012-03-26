@@ -15,6 +15,10 @@ class Topic < ActiveRecord::Base
 		text :description, :stored => true
 	end
 
+	def to_param
+    	"#{id}-#{name.parameterize}"
+  	end
+
 	def owner?(other_user)
       self.user == other_user
     end

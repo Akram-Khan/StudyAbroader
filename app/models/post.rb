@@ -19,4 +19,8 @@ class Post < ActiveRecord::Base
       self.user == other_user
     end
 
+    def to_param
+    	"#{id}-#{name.parameterize}"
+  	end
+
 end
