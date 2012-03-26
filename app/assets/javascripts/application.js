@@ -21,7 +21,7 @@
                     display($('#rotmenu li:nth-child('+i+')'));
                 }
                 display($('#rotmenu li:first'));
-                var slidetime = setInterval(iterate,3000);
+                var slidetime = setInterval(iterate,8000);
 				
                 $('#rotmenu li').bind('click',function(e){
                     clearTimeout(slidetime);
