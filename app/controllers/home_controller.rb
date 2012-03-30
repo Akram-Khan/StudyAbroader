@@ -35,6 +35,11 @@ class HomeController < ApplicationController
     end
     @post_results =post_search.results
 
+    blog_search = Sunspot.search(Blog) do 
+      keywords params[:query]
+    end
+    @blog_results = blog_search.results
+
     user_search =Sunspot.search(User) do
       keywords params[:query]
     end

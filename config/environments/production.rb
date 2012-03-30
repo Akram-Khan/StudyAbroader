@@ -69,8 +69,8 @@ StudyAbroaderSlideshow::Application.configure do
     :port => 587,
     :domain => "gmail.com",
     :authentication => :login,
-    :user_name => "studyabroader@akaruilabs.com",
-    :password => "rozrulez**",
+    :user_name => "admin@studyabroader.com",
+    :password => "rozrules**",
   }
 
 end

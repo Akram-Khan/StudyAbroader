@@ -27,6 +27,7 @@ class TopicsController < ApplicationController
 	end
 
 	def show
+		@title = @topic.name
 		@new_comment = @topic.postcomments.build
 		@comments = @topic.postcomments.all
 		@topic_posts = @topic.posts.paginate(:page => params[:page], :per_page => 15)

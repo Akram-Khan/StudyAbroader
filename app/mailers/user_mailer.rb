@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default :from => "studyabroader@akaruilabs.com"
+  default :from => "admin@studyabroader.com"
   default_url_options[:host] = "studyabroader.com"
 
   def sendmail(username, email, title, body)

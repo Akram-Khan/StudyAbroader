@@ -36,6 +36,29 @@
 				%li=result.content
 				%li=link_to "See the related topic", forum_topic_path(result.topic.forum_id,result.topic.id)
 				%hr
+.container
+	.row.background-heading
+		%h5="Results from Blogs"
+.container
+	.row
+		-if @blog_results.empty?
+			%h4="No Matching Result in Blog"
+			%hr
+		-@blog_results.each do |result|
+			%ul
+				%li="Blog Name :-"
+				%strong
+					%li=link_to result.title, blog_path(result)
+				%li="Blog Description"
+				%li=raw truncate_html(result.body, :length => 1500)
+				%strong
+					%li="Created by :- #{result.user.username}"
+					%li
+						-if result.user.avatar?
+							=image_tag(result.user.avatar_url(:thumb_medium)).to_s
+						-else
+							=image_tag("no-image.jpg")
+				%hr
 
 .container
 	.row.background-heading

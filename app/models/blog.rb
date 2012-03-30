@@ -16,7 +16,7 @@ class Blog < ActiveRecord::Base
 
   searchable do 
     text :title, :boost =>5
-    text :body
+    text :body, :stored => true
   end
 
 

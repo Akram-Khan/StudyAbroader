@@ -70,5 +70,24 @@ def make_home_elements
 	@home_element.contactus = "login as admin to change this"
 	@home_element.privacy_policy = "login as admin to change this"
 	@home_element.terms_and_conditions = "login as admin to change this"
+	@home_element.confirmation_email = "<h5>Tips on Getting Started on StudyAbroader</h5>
+<p> In order for us to better understand you and customize StudyAbroader to your needs please consider completing your profile information at the link below:</p>
+
+<p><A href='http://studyabroader.com/dashboard/edit_profile'>Edit Profile</A></p>
+
+<h5>Forums</h5>
+
+<p>You can browse the StudyAbroader forums and post your own queries at the link below:</p>
+
+<p><A href='http://studyabroader.com/forums'>StudyAbroad Forums</A></p>
+
+<h5>Blogs</h5>
+
+<p>You can contribute to the StudyAbroader Blogs by sharing your study abroad experiences, at the link below:</p>
+
+<p><A href='http://studyabroader.com/dashboard/my_blogging_abroad'>StudyAbroader Blog Submissions</A></p>
+
+</br>
+<p> Thank you for signing up and welcome aboard!</p>".html_safe
 	@home_element.save!
 end

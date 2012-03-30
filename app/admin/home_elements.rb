@@ -36,6 +36,7 @@ ActiveAdmin.register HomeElement do
             f.input :contactus, :as => :rich
             f.input :privacy_policy, :as => :rich
             f.input :terms_and_conditions, :as => :rich
+            f.input :confirmation_email, :as => :rich
         end
         f.buttons
     end
