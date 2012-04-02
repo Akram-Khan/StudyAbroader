@@ -6,4 +6,5 @@
  *= require formtastic
  *= require my_formtastic
  *= require_self
+ *= require_tree . 
 */
