@@ -8,7 +8,7 @@
 		.three.columns.header_image
 			= link_to logo, root_url
 		
-		.three.columns
+		.three.columns.signup
 			-if current_user.blank?
 				=link_to "Sign Up",signup_path, :class=> "signupButtonForModal small radius nice green button"
 				=link_to "Login",signin_path, :class=> "signinButtonForModal small radius nice blue button"
