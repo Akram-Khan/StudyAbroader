@@ -3,6 +3,19 @@
 	
 }
 
+.nav-bar{
+	
+}
+
+.nav-bar li{
+	display: inline;
+	list-style: none;
+}
+
+.nav-bar li a{
+	
+}
+
 .signup{
 	width: 100px;
 }
