@@ -10,6 +10,8 @@
 .nav-bar li{
 	display: inline;
 	list-style: none;
+	height: 30px;
+	float: left;
 }
 
 .nav-bar li a{
