@@ -28,7 +28,7 @@
 				.eleven.columns.home-content-1
 					%ul
 						-@top_destinations.each do |destination|
-							%h5=link_to destination.name, destination_path(destination)
+							%h5=link_to destination.name, fun_facts_destination_path(destination)
 							-destination.destination_photos.limit(1).each do |photo|
 								%li=image_tag(photo.picture.thumb_large.url)
 							%li=raw truncate_html(destination.fun_facts, :length => 300)		
