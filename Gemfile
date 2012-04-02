@@ -6,7 +6,7 @@ gem 'rails', '3.1.3'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-gem 'zurb-foundation', "2.1.5.1"
+gem 'zurb-foundation'
 gem 'formtastic'
 gem 'client_side_validations'
 gem 'haml'
@@ -33,7 +33,7 @@ gem 'progress_bar'
 
 gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
 gem "meta_search"
-gem 'sass-rails',   '~> 3.1.5'
+gem 'sass-rails',   '~> 3.1.4'
 gem "rich"
 
 gem 'gmaps4rails'
