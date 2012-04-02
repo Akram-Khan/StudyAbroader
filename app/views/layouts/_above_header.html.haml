@@ -18,8 +18,10 @@
 				=text_field_tag :query,params[:query], :placeholder => "search", :class =>"search round"
 				=image_submit_tag("search.png")
 		
-		.three.columns.links-header
+		.four.columns.links-header
 			%ul(class="block-grid")	
+				%li=link_to "About |", about_path, :class => "nice foot"		
+				%li=link_to "Contact |", contact_path, :class => "nice foot"
 				%li=link_to "Blog |", blogs_path, :class => "nice foot"
 				%li=link_to "Program Providers", program_providers_path, :class => "nice foot"
 				- unless current_user.blank?
