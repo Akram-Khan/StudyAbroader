@@ -33,7 +33,7 @@ gem 'progress_bar'
 
 gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
 gem "meta_search"
-gem 'sass-rails',   '~> 3.1.4'
+gem 'sass-rails',   '3.1.4'
 gem "rich"
 
 gem 'gmaps4rails'
